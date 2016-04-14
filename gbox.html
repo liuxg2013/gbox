@@ -1,0 +1,125 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="http://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet">
+<link href="demo.css" rel="stylesheet" type="text/css">
+<link href="gbox.css" rel="stylesheet"
+	type="text/css">
+
+<title>gbox</title>
+</head>
+<body>
+	<div class="demo">
+		<h3 class="demo-title">gbox使用</h3>
+		<p>插件介绍：gbox用于上下结构的布局管理，可以根据根据需要修改自己的样式，可以右键查看源文件，看看具体用法</p>
+		<p>1.普通样式,默认宽高是400*300，可以修改gbox的宽度和gbody的高度样式，如果不设置gbody的高度，高度随gbody内容高度</p>
+		<div class="gbox" style="">
+			<div class="gheader">
+				<span class="gtitle"> <span class="gicon"><i
+						class="fa fa-tags"></i></span> <span class="gtext">我的盒子</span>
+				</span> <span class="gtool"> <span class="gec"><i
+						class="fa fa-expand"></i></span> <span class="gflex"><i
+						class="fa fa-angle-double-up"></i></span> <span class="gclose"><i
+						class="fa fa-times"></i></span>
+				</span>
+			</div>
+			<div class="gbody"></div>
+		</div>
+		<p>2.添加阴影,添加shadow样式类，添加opacity80可以设置80%的透明度</p>
+		<div class="gbox shadow">
+			<div class="gheader ">
+				<span class="gtitle"> <span class="gicon"><i
+						class="fa fa-tags"></i></span> <span class="gtext">我的盒子</span>
+				</span> <span class="gtool"> <span class="gec"><i
+						class="fa fa-expand"></i></span> <span class="gflex"><i
+						class="fa fa-angle-double-up"></i></span> <span class="gclose"><i
+						class="fa fa-times"></i></span>
+				</span>
+			</div>
+			<div class="gbody"></div>
+		</div>
+		<p>3.去掉boder,添加no-border样式类 ，顺便添加tab，去掉toolar</p>
+		<div class="gbox no-border">
+			<div class="gheader">
+				<div class="gtab">
+					<button type="button" class="current">用户管理</button>
+					<button type="button">警车管理</button>
+					<button type="button">设备管理</button>
+				</div>
+			</div>
+			<div class="gbody"></div>
+		</div>
+		<p>4.添加footer,实例话gbox，自动添加事件处理，可以在回调函数中进行写自己的逻辑，配置width和height可以改变gbox的宽度和高度</p>
+		<div class="gbox no-border" id="demo1">
+			<div class="gheader">
+				<div class="gtab">
+					<button type="button" class="current">用户管理</button>
+					<button type="button">警车管理</button>
+					<button type="button">设备管理</button>
+				</div>
+				<span class="gtool"> <span class="gec"><i
+						class="fa fa-expand"></i></span> <span class="gflex"><i
+						class="fa fa-angle-double-up"></i></span> <span class="gclose"><i
+						class="fa fa-times"></i></span>
+				</span>
+			</div>
+			<div class="gbody">
+				<div class="gfooter">
+					<button type="button">确定</button>
+					<button type="button">取消</button>
+				</div>
+			</div>
+		</div>
+
+		<p>5.添加拖动事件，实例化gbox，并配置dragable为true</p>
+		<div class="gbox opacity80" id="demo2">
+			<div class="gheader">
+				<span class="gtitle"> <span class="gicon"><i
+						class="fa fa-tags"></i></span> <span class="gtext">拖动窗口</span>
+				</span> <span class="gtool"> <span class="gec"><i
+						class="fa fa-expand"></i></span> <span class="gflex"><i
+						class="fa fa-angle-double-up"></i></span> <span class="gclose"><i
+						class="fa fa-times"></i></span>
+				</span>
+			</div>
+			<div class="gbody"></div>
+		</div>
+
+
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="gbox.js"></script>
+	<script type="text/javascript">
+		$("#demo1").gbox({ //添加事件，并调用回调函数
+			"bclose" : function() { //关闭之前事件,返回false阻止事件下发
+				//console.log("bclose");
+			},
+			"bexpand" : function() { //全屏之前事件,返回false阻止事件下发
+				//console.log("bexpand");
+			},
+			"bcompress" : function() { //关闭全之前事件,返回false阻止事件下发
+				//console.log("bcompress");
+			},
+			"bup" : function() { //上收之前事件,返回false阻止事件下发
+				//console.log("bup");
+				return true;
+			},
+			"bdown" : function() { //下伸之前事件,返回false阻止事件下发
+				//console.log("bdown");
+			},
+			"tab" : function(currentTab) { //切换tab的事件,返回false阻止事件下发
+				//console.log(currentTab.text());
+			},
+			"width" : 320,
+			"height" :240
+		});
+		$("#demo2").gbox({ //添加拖动事件
+			 dragable : true ,
+			 top : 50,
+			 left : 30
+		});
+	</script>
+</body>
+</html>
